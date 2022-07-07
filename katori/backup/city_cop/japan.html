@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script src="./d3.js" charset="utf-8"></script>
+        <script src="./topojson.js" charset="utf-8"></script>
+    </head>
+<body>
+
+    <input id="Population" type="button" value="Population" onclick="buttonClickpopulation()">
+    <input id="FoodPro" type="button" value="FoodProduction" onclick="buttonClickfood()">
+    <input id="ClothingPro" type="button" value="ClothingProduction" onclick="buttonClickclothing()">
+    <input id="FurniturePro" type="button" value="FurnitureProduction" onclick="buttonClickfurniture()">
+
+<script type="text/javascript">
+
+var width = 400;
+var height = 400;
+var populationHash = {};
+var foodHash = {};
+var clothingHash = {};
+var furnitureHash = {};
+var mode = "population";
+var Hashs = {};
+
+var populationcolor = d3.scaleLinear().domain([500, 14000]).range([255,0]);
+var foodcolor = d3.scaleLinear().domain([200, 2000]).range([255,0])
+var clothingcolor = d3.scaleLinear().domain([10, 1300]).range([255,0])
+var furniturecolor = d3.scaleLinear().domain([0, 500]).range([255,0])
+var colors = {"population":populationcolor, "food":foodcolor, "clothing":clothingcolor, "furniture":furniturecolor};
+
+const aryMax = function (a, b) {return Math.max(a, b);}
+const aryMin = function (a, b) {return Math.min(a, b);}
+var sizes = []
+d3.csv("./coordinates.csv").then(function(data) {
+    data.forEach(function(d) {
+        sizes.push(d.Size);
+    })
+    // console.log("size", sizes)
+        });
+
+
+d3.csv("./Japan2015Data.csv").then(function(data) {
+    data.forEach(function(d)
+    {
+        populationHash[d.Prefecture] = d.Population;
+        foodHash[d.Prefecture] = d.FoodProduction;
+        clothingHash[d.Prefecture] = d.ClothingProduction;
+        furnitureHash[d.Prefecture] = d.FurnitureProduction;
+        Hashs["population"] = populationHash;
+        Hashs["food"] = foodHash;
+        Hashs["clothing"] = clothingHash;
+        Hashs["furniture"] = furnitureHash;
+    });
+    showMap(mode);
+});
+
+function buttonClickpopulation() {
+    mode = "population";
+    d3.select("#map").remove();
+    showMap(mode);
+};
+
+function buttonClickfood() {
+    mode = "food";
+    d3.select("#map").remove();
+    showMap(mode);
+};
+
+function buttonClickclothing() {
+    mode = "clothing";
+    d3.select("#map").remove();
+    showMap(mode);
+};
+
+function buttonClickfurniture() {
+    mode = "furniture";
+    d3.select("#map").remove();
+    showMap(mode);
+};
+
+function showMap(mode) {
+    var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("id", "map");
+    d3.json("./japan.topojson").then(function(data) {
+        var japan = topojson.feature(data, data.objects.japan);
+        // console.log("japa_features", japan.features);
+
+        var projection = d3.geoMercator()
+        .center([137, 34])
+        .translate([width/2, height/2])
+        .scale(750);
+
+        var path = d3.geoPath().projection(projection);
+        
+        svg.selectAll("path")
+        .data(japan.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        // .attr("fill", function(d) {return "rgb(255," + Math.floor(colors[mode](Hashs[mode][d.properties.nam_ja])) + ", " + Math.floor(colors[mode](Hashs[mode][d.properties.nam_ja])) + ")"})
+        .attr("stroke", "#333333")
+        .attr("stroke-width", 0.5)
+
+        d3.csv("./coordinates.csv").then(function(data) {
+            var sizeScale  = d3.scaleLinear().domain([sizes.reduce(aryMin), sizes.reduce(aryMax)]).range([1,50]);
+            data.forEach(function(d) {                
+                svg.append("circle")
+                .attr("r", sizeScale(d.Size))
+                .attr("transform", function() { 
+                    var coord = projection([d.X, d.Y]);
+                    return "translate(" + coord.join(",") + ")"; 
+                })
+                .attr("fill", "rgba(0,0,255,1)")
+                .on("mouseover", function(event, d) {
+                    console.log(d);
+                    svg.append("text")
+                    .attr("id", "market")
+                    .attr("x", 100)
+                    .attr("y", 100)
+                    .text(`market:${d}`)
+                })
+                .on("mouseout", function(event, d) {
+                    d3.select("#market").remove();
+            });
+            })
+        });
+            
+    });
+
+};
+</script>
+</body>
+</html>

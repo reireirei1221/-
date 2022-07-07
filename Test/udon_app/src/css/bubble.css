@@ -1,0 +1,163 @@
+/* 軸のスタイル */
+g.x_axis path, g.y_axis path {
+    stroke: black;
+    stroke-width: 1px;
+  }
+  /* 罫線スタイル */
+  g.x_axis line, g.y_axis line {
+    stroke: lightgray;
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
+  }
+/* 点上にマウスを乗せる */
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 2px;
+    font: 6px;
+    background: white;
+    -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+    visibility: hidden;
+  }
+  .tooltip2 {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 4px;
+    font: 10px sans-serif;
+    color: black;
+    background: yellow;
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    visibility: hidden;
+}
+  /* 折れ線グラフ */
+  #chart {
+    position: absolute;
+    top: 100px;
+    left: 700px;
+    z-index: 10;
+  }
+  /* バブルチャート */
+  #graph {
+
+  }
+  /* 凡例 */
+  #legend {
+    position: absolute;
+    top: 180px;
+    left: 1000px;
+  }
+  #recipe {
+    position: absolute;
+    /* top: 20px; */
+    left: 0px;
+  }
+  /* ドロップダウンメニュー */
+  #dropdown {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  #choose {
+    background-color: white;
+  }
+  #blue {
+    color: rgb(31, 119, 180);
+    background-color: white;
+  }
+  #orange {
+    color: rgb(255, 127, 14);
+    background-color: white;
+  }
+  #green {
+    color: rgb(44, 160, 44);
+    background-color: white;
+  }
+  #red {
+    color: rgb(214, 39, 40);
+    background-color: white;
+  }
+  #purple {
+    color: rgb(148, 103, 189);
+    background-color: white;
+  }
+  #brown {
+    color: rgb(160, 82, 45);
+    background-color: white;
+  }
+  #pink {
+    color: rgb(229, 140, 160);
+    background-color: white;
+  }
+  #all {
+    color: black;
+    background-color: white;
+  }
+
+
+
+
+  body{
+    /* background:#f78181; */
+  }
+  
+  label{
+    box-shadow:0 3px 5px rgba(0,0,0,.2);
+    padding:15px;
+    background:white;
+    width:260px;
+    display:inline-block;
+    position:relative;
+    margin-left:50px;
+  }
+  
+  select{
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    font-size:16px;
+    color:#909090;
+    /* background-color: blue; */
+    border-radius:0;
+    width:275px;
+    z-index:2;
+    background:transparent;
+  }
+  
+  label:after{
+    content:"\25bc";
+    font-size:16px;
+    color:white;
+    background:#f3a1a1;
+    width:42px;
+    text-align:center;
+    line-height:3.2em;
+    top:0;
+    right:0;
+    bottom:0;
+    position:absolute;
+    pointer-events:none;
+  }
+  
+  option{
+    border-bottom:1px solid #eaeaea;
+    border-left:3px solid white;
+    appearance:none;
+  }
+  
+  option:hover{
+    background-color:white;
+    border-left:3px solid #f3a1a1;
+  
+  }

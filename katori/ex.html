@@ -1,0 +1,43 @@
+<html lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>D3 Test</title>
+  <script type="text/javascript" src="./d3.js"></script>
+  <style type="text/css">
+  </style>
+  </head>
+  <body>
+  
+  <script type="text/javascript">
+  
+  var dataset = {}
+  
+  d3.csv("./total2.csv").then(function(data){
+  
+    var i = 0;
+    var products_list = [];
+    var air_port = 0;
+  
+    data.forEach(function(d){
+  
+      if(products_list.indexOf(d["品目コード"]) == -1)
+      {
+        products_list.push(d["品目コード"]);
+      dataset[d["品目コード"]] = {};
+      dataset[d["品目コード"]][d["都市コード"]] = [[d['年']+'-'+d['月']+'-'+d["日"],d["対前日比（価格）"]/1]];
+      }
+      else
+      {
+      if (dataset[d["品目コード"]][d["都市コード"]] == null) {
+        dataset[d["品目コード"]][d["都市コード"]] = [[d['年']+'-'+d['月']+'-'+d["日"],d["対前日比（価格）"]/1]];
+      }
+      else {
+        dataset[d["品目コード"]][d["都市コード"]].push([d['年']+'-'+d['月']+'-'+d["日"],d["対前日比（価格）"]/1]);
+      }
+      }
+    });
+    console.log(dataset);
+  });
+  
+  </script>
+  </body></html>
+  

@@ -1,0 +1,469 @@
+/* ボタン一般設定 */
+/* top +400px  -100px*/
+/* left +100px */
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;/*rem算出をしやすくするために*/
+}
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+/* 軸のスタイル */
+g.x_axis path, g.y_axis path {
+  stroke: black;
+  stroke-width: 1px;
+}
+/* 罫線スタイル */
+g.x_axis line, g.y_axis line {
+  stroke: lightgray;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
+/* 点上にマウスを乗せる */
+.tooltip {
+  position: absolute;
+  text-align: center;
+  width: auto;
+  height: auto;
+  padding: 2px;
+  font: 6px;
+  background: white;
+  -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+}
+
+/* 折れ線グラフ */
+#chart {
+  position: absolute;
+  left: 500px;
+}
+
+/* ボタン */
+#sapporo {
+  background-color:yellow; 
+  position: absolute;
+  top: 370px; /*var(--plus_height)*/ /*490*/
+  left: 430px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 43px;
+  height: 43px;
+  -webkit-box-shadow: 0 5px 0 #e6d900;
+  box-shadow: 0 5px 0 #e6d900;
+  cursor: pointer;
+  text-align: center;
+  padding:14px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color: #212529;
+  font-size: larger;
+}
+#sapporo:hover {
+  -webkit-transform: translate(0, 3px);
+  transform: translate(0, 3px);
+  -webkit-box-shadow: 0 2px 0 #e6d900;
+  box-shadow: 0 2px 0 #e6d900;
+}
+#sendai {
+  background-color: aqua;
+  position: absolute;
+  top: 490px;
+  left: 440px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 37px;
+  height: 37px;
+  -webkit-box-shadow: 0 4px 0 rgb(1, 196, 196);
+  box-shadow: 0 4px 0 rgb(1, 196, 196);
+  cursor: pointer;
+  text-align: center;
+  padding:10px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color: #212529;
+  font-size: larger;
+}
+#sendai:hover {
+  -webkit-transform: translate(0, 2.5px);
+  transform: translate(0, 2.5px);
+  -webkit-box-shadow: 0 1.7px 0 rgb(1, 196, 196);
+  box-shadow: 0 1.7px 0 rgb(1, 196, 196);
+}
+#tokyo {
+  background-color: blue;
+  position: absolute;
+  top: 510px;
+  left: 470px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 126px;
+  height: 126px;
+  -webkit-box-shadow: 0 10px 0 rgb(0, 0, 204);
+  box-shadow: 0 10px 0 rgb(0, 0, 204);
+  cursor: pointer;
+  text-align: center;
+  padding: 40px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color: white;
+  font-size: xx-large;
+}
+#tokyo:hover {
+  -webkit-transform: translate(0, 5.5px);
+  transform: translate(0, 5.5px);
+  -webkit-box-shadow: 0 4px 0 rgb(0, 0, 204);
+  box-shadow: 0 4px 0 rgb(0, 0, 204);
+}
+#yokohama {
+  background-color:fuchsia;
+  position: absolute;
+  top: 630px;
+  left: 355px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 57px;
+  height: 57px;
+  -webkit-box-shadow: 0 5.6px 0 rgb(187, 1, 187);
+  box-shadow: 0 5.6px 0 rgb(187, 1, 187);
+  cursor: pointer;
+  text-align: center;
+  padding: 17px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color: white;
+  font-size: large;
+}
+#yokohama:hover {
+  -webkit-transform: translate(0, 3.3px);
+  transform: translate(0, 3.3px);
+  -webkit-box-shadow: 0 2.1px 0 rgb(187, 1, 187);
+  box-shadow: 0 2.1px 0 rgb(187, 1, 187);
+}
+#kanazawa {
+  background-color:gray;
+  position: absolute;
+  top: 540px;
+  left: 335px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  -webkit-box-shadow: 0 4px 0 rgb(70, 70, 70);
+  box-shadow: 0 4px 0 rgb(70, 70, 70);
+  cursor: pointer;
+  text-align: center;
+  padding:8px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color: white;
+}
+#kanazawa:hover {
+  -webkit-transform: translate(0, 2.2px);
+  transform: translate(0, 2.2px);
+  -webkit-box-shadow: 0 1.5px 0 rgb(70, 70, 70);
+  box-shadow: 0 1.5px 0 rgb(70, 70, 70);
+}
+#nagoya {
+  background-color:green;
+  position: absolute;
+  top: 640px;
+  left: 280px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 69px;
+  height: 69px;
+  -webkit-box-shadow: 0 6.5px 0 rgb(1, 68, 1);
+  box-shadow: 0 6.5px 0 rgb(1, 68, 1);
+  cursor: pointer;
+  text-align: center;
+  padding:22px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color: white;
+  font-size: large;
+}
+#nagoya:hover {
+  -webkit-transform: translate(0, 3.7px);
+  transform: translate(0, 3.7px);
+  -webkit-box-shadow: 0 2.5px 0 rgb(1, 68, 1);
+  box-shadow: 0 2.5px 0 rgb(1, 68, 1);
+}
+#kyoto {
+  background-color:lime;
+  position: absolute;
+  top: 410px;
+  left: 320px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  -webkit-box-shadow: 0 5px 0 rgb(4, 167, 4);
+  box-shadow: 0 5px 0 rgb(4, 167, 4);
+  cursor: pointer;
+  text-align: center;
+  padding:13px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color:black;
+  font-size: large;
+}
+#kyoto:hover {
+  -webkit-transform: translate(0, 3px);
+  transform: translate(0, 3px);
+  -webkit-box-shadow: 0 2px 0 rgb(4, 167, 4);
+  box-shadow: 0 2px 0 rgb(4, 167, 4);
+}
+#osaka {
+  background-color:maroon;
+  position: absolute;
+  top: 430px;
+  left: 210px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 82px;
+  height: 82px;
+  -webkit-box-shadow: 0 7px 0 rgb(70, 1, 1);
+  box-shadow: 0 7px 0 rgb(70, 1, 1);
+  cursor: pointer;
+  text-align: center;
+  padding:25px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color:white;
+  font-size: x-large;
+}
+#osaka:hover {
+  -webkit-transform: translate(0, 4px);
+  transform: translate(0, 4px);
+  -webkit-box-shadow: 0 2.7px 0 rgb(70, 1, 1);
+  box-shadow: 0 2.7px 0 rgb(70, 1, 1);
+}
+#kobe {
+  background-color:navy;
+  position: absolute;
+  top: 540px;
+  left: 230px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 31px;
+  height: 31px;
+  -webkit-box-shadow: 0 4px 0 rgb(2, 2, 68);
+  box-shadow: 0 4px 0 rgb(2, 2, 68);
+  cursor: pointer;
+  text-align: center;
+  padding:9px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color:white;
+}
+#kobe:hover {
+  -webkit-transform: translate(0, 2.5px);
+  transform: translate(0, 2.5px);
+  -webkit-box-shadow: 0 1.5px 0 rgb(2, 2, 68);
+  box-shadow: 0 1.5px 0 rgb(2, 2, 68);
+}
+#hiroshima {
+  background-color:olive;
+  position: absolute;
+  top: 590px;
+  left: 250px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  -webkit-box-shadow: 0 4px 0 rgb(61, 61, 1);
+  box-shadow: 0 4px 0 rgb(61, 61, 1);
+  cursor: pointer;
+  text-align: center;
+  padding:10px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color:white;
+}
+#hiroshima:hover {
+  -webkit-transform: translate(0, 2.5px);
+  transform: translate(0, 2.5px);
+  -webkit-box-shadow: 0 1.5px 0 rgb(61, 61, 1);
+  box-shadow: 0 1.5px 0 rgb(61, 61, 1);
+}
+#takamatsu {
+  background-color:purple;
+  position: absolute;
+  top: 600px;
+  left: 285px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  -webkit-box-shadow: 0 3.5px 0 rgb(71, 2, 71);
+  box-shadow: 0 3.5px 0 rgb(71, 2, 71);
+  cursor: pointer;
+  text-align: center;
+  padding:6px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color:white;
+}
+#takamatsu:hover {
+  -webkit-transform: translate(0, 2.2px);
+  transform: translate(0, 2.2px);
+  -webkit-box-shadow: 0 1.3px 0 rgb(71, 2, 71);
+  box-shadow: 0 1.3px 0 rgb(71, 2, 71);
+}
+#kitakyusyu {
+  background-color:red;
+  position: absolute;
+  top: 480px;
+  left: 170px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  -webkit-box-shadow: 0 4px 0 rgb(134, 1, 1);
+  box-shadow: 0 4px 0 rgb(134, 1, 1);
+  cursor: pointer;
+  text-align: center;
+  padding:12px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color:white;
+  font-size: smaller;
+}
+#kitakyusyu:hover {
+  -webkit-transform: translate(0, 2.5px);
+  transform: translate(0, 2.5px);
+  -webkit-box-shadow: 0 1.5px 0 rgb(134, 1, 1);
+  box-shadow: 0 1.5px 0 rgb(134, 1, 1);
+}
+#fukuoka {
+  background-color: silver;
+  position: absolute;
+  top: 635px;
+  left: 190px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 49px;
+  height: 49px;
+  -webkit-box-shadow: 0 5px 0 rgb(104, 104, 104);
+  box-shadow: 0 5px 0 rgb(104, 104, 104);
+  cursor: pointer;
+  text-align: center;
+  padding:12px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color:black;
+  font-size: large; /*large*/
+}
+#fukuoka:hover {
+  -webkit-transform: translate(0, 3px);
+  transform: translate(0, 3px);
+  -webkit-box-shadow: 0 2px 0 rgb(104, 104, 104);
+  box-shadow: 0 2px 0 rgb(104, 104, 104);
+}
+#okinawa {
+  background-color: teal;
+  position: absolute;
+  top: 650px; /*450*/
+  left: 485px; /*335*/
+  z-index: 1000;
+  border-radius: 50%;
+  width: 20.2px;
+  height: 20.2px;
+  -webkit-box-shadow: 0 3px 0 rgb(1, 88, 88);
+  box-shadow: 0 3px 0 rgb(1, 88, 88);
+  cursor: pointer;
+  text-align: center;
+  padding: 5px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color:white;
+  font-size: "xx-small";
+}
+#okinawa:hover {
+  -webkit-transform: translate(0, 2px);
+  transform: translate(0, 2px);
+  -webkit-box-shadow: 0 1px 0 rgb(1, 88, 88);
+  box-shadow: 0 1px 0 rgb(1, 88, 88);
+}
+#allon {
+  background-color:orange;
+  position: absolute;
+  top: 320px;
+  left: 130px;
+  z-index: 1000;
+  border-radius: 0%;
+  width: 150px;
+  height: 30px;
+  -webkit-box-shadow: 0 5px 0 rgb(192, 126, 4);
+  box-shadow: 0 5px 0 rgb(192, 126, 4);
+  cursor: pointer;
+  text-align: center;
+  padding:3px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color:black;
+  font-size: large;
+}
+#allon:hover {
+  -webkit-transform: translate(0, 3px);
+  transform: translate(0, 3px);
+  -webkit-box-shadow: 0 2px 0 rgb(192, 126, 4);
+  box-shadow: 0 2px 0 rgb(192, 126, 4);
+}
+#alloff {
+  background-color:orange;
+  position: absolute;
+  top: 360px;
+  left: 130px;
+  z-index: 1000;
+  border-radius: 0%;
+  width: 150px;
+  height: 30px;
+  -webkit-box-shadow: 0 5px 0 rgb(192, 126, 4);
+  box-shadow: 0 5px 0 rgb(192, 126, 4);
+  cursor: pointer;
+  text-align: center;
+  padding:3px 0;
+  vertical-align: middle;
+  text-decoration: none;
+  color:black;
+  font-size: large;
+}
+#alloff:hover {
+  -webkit-transform: translate(0, 3px);
+  transform: translate(0, 3px);
+  -webkit-box-shadow: 0 2px 0 rgb(192, 126, 4);
+  box-shadow: 0 2px 0 rgb(192, 126, 4);
+}

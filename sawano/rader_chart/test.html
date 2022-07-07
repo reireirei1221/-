@@ -1,0 +1,62 @@
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>D3 Test</title>
+ <script type="text/javascript" src="./d3.js"></script>
+<style type="text/css">
+</style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var products = {};
+
+var product = [];
+
+d3.csv("./tokyo1.csv").then(function(data){
+	console.log(data);
+	data.forEach(function(d){
+		if(d.品目名 != "野菜総量" && d.産地コード == ''){
+			if (products[d.品目コード] == null) {
+				products[d.品目コード] = [];
+				products[d.品目コード].push([d.年, d.月, d.日, d.価格/1]);
+				product.push(d.年);
+			}
+			else {
+				products[d.品目コード].push([d.年, d.価格/1]);
+				product.push(d.年);
+				console.log("OK");
+			}
+			console.log(d.品目コード);
+			console.log(products);
+			console.log(product);
+			//products[d["品目コード"]][d["都市コード"]] = d["価格"];
+		}
+	});
+});
+
+var city1 = {
+  city: 'Tokyo',
+  dates: [
+  		['2012-01-01',10],
+  		['2012-01-02',20],
+		['2012-01-03',30]
+		]
+};
+
+var city2 = {
+  city: 'Osaka',
+  dates: [
+  		['2012-01-01',60],
+  		['2012-01-02',40],
+		['2012-01-03',20]
+		]
+};
+
+var products2 = {
+	name: 'apple',
+	cities: [city1, city2]
+}
+
+</script>
+</body></html>

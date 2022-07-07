@@ -1,0 +1,132 @@
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>D3 Test</title>
+<script type="text/javascript" src="./d3.js"></script>
+<style type="text/css">
+</style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+//地域別のデータセット
+var dataset = {}
+var dataset2 = {}
+
+// 品物ごとの平均のデータセット
+var dataset3 = {}
+var dataset4 = {}
+
+d3.csv("./total2.csv").then(function(data){
+
+  var i = 0;
+  var products_list = [];
+  var air_port = 0;
+
+  data.forEach(function(d){
+
+    if(products_list.indexOf(d["品目コード"]) == -1)
+    {
+      products_list.push(d["品目コード"]);
+	  dataset[d["品目コード"]] = {};
+	  dataset[d["品目コード"]][d["都市コード"]] = [[d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]];
+    }
+    else
+    {
+	  if (dataset[d["品目コード"]][d["都市コード"]] == null) {
+		  dataset[d["品目コード"]][d["都市コード"]] = [[d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]];
+	  }
+	  else {
+		  dataset[d["品目コード"]][d["都市コード"]].push([d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]);
+	  }
+    }
+  });
+  console.log(dataset, 1);
+});
+
+d3.csv("./total2.csv").then(function(data){
+
+  var i = 0;
+  var products_list = [];
+  var air_port = 0;
+
+  data.forEach(function(d){
+
+    if(products_list.indexOf(d["品目名"]) == -1)
+    {
+      products_list.push(d["品目名"]);
+	  dataset2[d["品目名"]] = {};
+	  dataset2[d["品目名"]][d["都市名"]] = [[d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]];
+    }
+    else
+    {
+	  if (dataset2[d["品目名"]][d["都市名"]] == null) {
+		  dataset2[d["品目名"]][d["都市名"]] = [[d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]];
+	  }
+	  else {
+		  dataset2[d["品目名"]][d["都市名"]].push([d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]);
+	  }
+    }
+  });
+  console.log(dataset2, 2);
+});
+
+d3.csv("./total4.csv").then(function(data){
+
+  var i = 0;
+  var products_list = [];
+
+  data.forEach(function(d){
+
+    if(products_list.indexOf(d["品目コード"]) == -1)
+    {
+      products_list.push(d["品目コード"]);
+	    dataset3[d["品目コード"]] = [];
+	    dataset3[d["品目コード"]].push([d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]);
+    }
+    else
+    {
+	  //if (dataset3[d["品目コード"]][d["都市コード"]] == null) {
+		//  dataset3[d["品目コード"]][d["都市コード"]] = [[d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]];
+	  //}
+	  //else {
+		//  dataset3[d["品目コード"]][d["都市コード"]].push([d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]);
+	  //}
+	  dataset3[d["品目コード"]].push([d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]);
+    }
+  });
+  console.log(dataset3, 3);
+});
+
+d3.csv("./total4.csv").then(function(data){
+
+  var i = 0;
+  var products_list = [];
+
+  data.forEach(function(d){
+
+    if(products_list.indexOf(d["品目名"]) == -1)
+    {
+      products_list.push(d["品目名"]);
+	    dataset4[d["品目名"]] = [];
+	    dataset4[d["品目名"]].push([d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]);
+    }
+    else
+    {
+	  //if (dataset3[d["品目コード"]][d["都市コード"]] == null) {
+		//  dataset3[d["品目コード"]][d["都市コード"]] = [[d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]];
+	  //}
+	  //else {
+		//  dataset3[d["品目コード"]][d["都市コード"]].push([d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]);
+	  //}
+	  dataset4[d["品目名"]].push([d['年']+'-'+d['月']+'-'+d["日"],d["価格"]/1]);
+    }
+  });
+  console.log(dataset4, 4);
+});
+
+
+
+
+</script>
+</body></html>

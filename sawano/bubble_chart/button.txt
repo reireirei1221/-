@@ -1,0 +1,577 @@
+    <button id="blue">blue</button>
+    <button id="orange">orange</button>
+    <button id="green">green</button>
+    <button id="red">red</button>
+    <button id="purple">purple</button>
+    <button id="b30000" class="contact_button">野菜総量</button>
+    <button id="b30100" class="contact_button">だいこん</button>
+    <button id="b30200" class="contact_button">かぶ</button>
+    <button id="b30300" class="contact_button">にんじん</button>
+    <button id="b30400" class="contact_button">ごぼう</button>
+    <button id="b30500" class="contact_button">たけのこ</button>
+    <button id="b30600" class="contact_button">れんこん</button>
+    <button id="b31100" class="contact_button">はくさい</button>
+    <button id="b31300" class="contact_button">みずな</button>
+    <button id="b31500" class="contact_button">こまつな</button>
+    
+    <button id="b31550" class="contact_button">その他の菜類</button>
+    <button id="b31560" class="contact_button">ちんげんさい</button>
+    <button id="b31700" class="contact_button">キャベツ</button>
+    <button id="b31800" class="contact_button">ほうれんそう</button>
+    <button id="b31900" class="contact_button">ねぎ</button>
+    <button id="b32300" class="contact_button">ふき</button>
+    <button id="b32400" class="contact_button">うど</button>
+    <button id="b32500" class="contact_button">みつば</button>
+    <button id="b32600" class="contact_button">しゅんぎく</button>
+    <button id="b32800" class="contact_button">にら</button>
+    
+    <button id="b32900" class="contact_button">セルリー</button>
+    <button id="b33100" class="contact_button">アスパラガス</button>
+    <button id="b33200" class="contact_button">カリフラワー</button>
+    <button id="b33300" class="contact_button">ブロッコリー</button>
+    <button id="b33400" class="contact_button">レタス</button>
+    <button id="b33600" class="contact_button">パセリ</button>
+    <button id="b34100" class="contact_button">きゅうり</button>
+    <button id="b34200" class="contact_button">かぼちゃ</button>
+    <button id="b34300" class="contact_button">なす</button>
+    <button id="b34400" class="contact_button">トマト</button>
+    
+    <button id="b34450" class="contact_button">ミニトマト</button>
+    <button id="b34500" class="contact_button">ピーマン</button>
+    <button id="b34600" class="contact_button">ししとう</button>
+    <button id="b34700" class="contact_button">スイトコーン</button>
+    <button id="b35100" class="contact_button">さやいんげん</button>
+    <button id="b35200" class="contact_button">さやえんどう</button>
+    <button id="b35300" class="contact_button">実えんどう</button>
+    <button id="b35500" class="contact_button">えだまめ</button>
+    <button id="b36100" class="contact_button">かんしょ</button>
+    <button id="b36200" class="contact_button">ばれいしょ</button>
+    
+    <button id="b36300" class="contact_button">さといも</button>
+    <button id="b36500" class="contact_button">やまのいも</button>
+    <button id="b36610" class="contact_button">たまねぎ</button>
+    <button id="b36700" class="contact_button">にんにく</button>
+    <button id="b37200" class="contact_button">しょうが</button>
+    <button id="b38100" class="contact_button">生しいたけ</button>
+    <button id="b38300" class="contact_button">なめこ</button>
+    <button id="b38400" class="contact_button">えのきだけ</button>
+    <button id="b38500" class="contact_button">しめじ</button>
+    <button id="b39000" class="contact_button">その他の野菜</button>
+    
+    <button id="b39100" class="contact_button">輸入野菜計</button>
+    <button id="b39200" class="contact_button">他の輸入野菜</button>
+    <button id="b40000" class="contact_button">果実総量</button>
+    <button id="b40001" class="contact_button">国産果実総量</button>
+    <button id="b40100" class="contact_button">みかん</button>
+    <button id="b41201" class="contact_button">ネーブル</button>
+    <button id="b41999" class="contact_button">その他雑かん</button>
+    <button id="b42000" class="contact_button">りんご計</button>
+    <button id="b42204" class="contact_button">つがる</button>
+    <button id="b42505" class="contact_button">ジョナゴルド</button>
+    
+    <button id="b42515" class="contact_button">王林</button>
+    <button id="b42804" class="contact_button">ふじ</button>
+    <button id="b42999" class="contact_button">その他りんご</button>
+    <button id="b43000" class="contact_button">日本なし計</button>
+    <button id="b43310" class="contact_button">新高</button>
+    <button id="b43401" class="contact_button">その他なし</button>
+    <button id="b43499" class="contact_button">西洋なし</button>
+    <button id="b43500" class="contact_button">かき計</button>
+    <button id="b43700" class="contact_button">甘がき</button>
+    <button id="b43751" class="contact_button">渋がき</button>
+    
+    <button id="b44100" class="contact_button">もも</button>
+    <button id="b45000" class="contact_button">ぶどう計</button>
+    <button id="b45206" class="contact_button">巨峰</button>
+    <button id="b45299" class="contact_button">その他ぶどう</button>
+    <button id="b45700" class="contact_button">くり</button>
+    <button id="b46100" class="contact_button">いちご</button>
+    <button id="b47000" class="contact_button">メロン計</button>
+    <button id="b47200" class="contact_button">温室メロン</button>
+    <button id="b47213" class="contact_button">アンデス</button>
+    <button id="b47299" class="contact_button">その他メロン</button>
+    
+    <button id="b48100" class="contact_button">すいか</button>
+    <button id="b49300" class="contact_button">キウイフルツ</button>
+    <button id="b49500" class="contact_button">他の国産果実</button>
+    <button id="b50000" class="contact_button">輸入果実計</button>
+    <button id="b50100" class="contact_button">バナナ</button>
+    <button id="b50300" class="contact_button">パイナップル</button>
+    <button id="b50400" class="contact_button">レモン</button>
+    <button id="b50500" class="contact_button">グレプフルツ</button>
+    <button id="b50600" class="contact_button">オレンジ</button>
+    <button id="b50800" class="contact_button">輸入キウイ</button>
+    
+    <button id="b50850" class="contact_button">輸入メロン</button>
+    <button id="b50900" class="contact_button">他の輸入果実</button>
+    <button id="alloff">全消去</button>
+  </div>
+
+  <script type="text/javascript">
+
+    // button
+    d3.select("#b30000").on("click", function() {
+      change_flags("30000");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b30100").on("click", function() {
+      change_flags("30100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b30200").on("click", function() {
+      change_flags("30200");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b30300").on("click", function() {
+      change_flags("30300");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b30400").on("click", function() {
+      change_flags("30400");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b30500").on("click", function() {
+      change_flags("30500");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b30600").on("click", function() {
+      change_flags("30600");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b31100").on("click", function() {
+      change_flags("31100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b31300").on("click", function() {
+      change_flags("31300");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b31500").on("click", function() {
+      change_flags("31500");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b31550").on("click", function() {
+      change_flags("31550");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b31560").on("click", function() {
+      change_flags("31560");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b31700").on("click", function() {
+      change_flags("31700");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b31800").on("click", function() {
+      change_flags("31800");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b31900").on("click", function() {
+      change_flags("31900");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b32300").on("click", function() {
+      change_flags("32300");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b32400").on("click", function() {
+      change_flags("32400");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b32500").on("click", function() {
+      change_flags("32500");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b32600").on("click", function() {
+      change_flags("32600");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b32800").on("click", function() {
+      change_flags("32800");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b32900").on("click", function() {
+      change_flags("32900");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b33100").on("click", function() {
+      change_flags("33100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b33200").on("click", function() {
+      change_flags("33200");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b33300").on("click", function() {
+      change_flags("33300");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b33400").on("click", function() {
+      change_flags("33400");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b33600").on("click", function() {
+      change_flags("33600");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b34100").on("click", function() {
+      change_flags("34100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b34200").on("click", function() {
+      change_flags("34200");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b34300").on("click", function() {
+      change_flags("34300");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b34400").on("click", function() {
+      change_flags("34400");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b34450").on("click", function() {
+      change_flags("34450");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b34500").on("click", function() {
+      change_flags("34500");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b34600").on("click", function() {
+      change_flags("34600");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b34700").on("click", function() {
+      change_flags("34700");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b35100").on("click", function() {
+      change_flags("35100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b35200").on("click", function() {
+      change_flags("35200");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b35300").on("click", function() {
+      change_flags("35300");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b35500").on("click", function() {
+      change_flags("35500");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b36100").on("click", function() {
+      change_flags("36100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b36200").on("click", function() {
+      change_flags("36200");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b36300").on("click", function() {
+      change_flags("36300");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b36500").on("click", function() {
+      change_flags("36500");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b36610").on("click", function() {
+      change_flags("36610");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b36700").on("click", function() {
+      change_flags("36700");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b37200").on("click", function() {
+      change_flags("37200");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b38100").on("click", function() {
+      change_flags("38100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b38300").on("click", function() {
+      change_flags("38300");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b38400").on("click", function() {
+      change_flags("38400");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b38500").on("click", function() {
+      change_flags("38500");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b39000").on("click", function() {
+      change_flags("39000");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b39100").on("click", function() {
+      change_flags("39100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b39200").on("click", function() {
+      change_flags("39200");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b40000").on("click", function() {
+      change_flags("40000");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b40001").on("click", function() {
+      change_flags("40001");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b40100").on("click", function() {
+      change_flags("40100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b41201").on("click", function() {
+      change_flags("41201");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b41999").on("click", function() {
+      change_flags("41999");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b42000").on("click", function() {
+      change_flags("42000");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b42204").on("click", function() {
+      change_flags("42204");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b42205").on("click", function() {
+      change_flags("42205");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b42515").on("click", function() {
+      change_flags("42515");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b42804").on("click", function() {
+      change_flags("42804");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b42999").on("click", function() {
+      change_flags("42999");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b43000").on("click", function() {
+      change_flags("43000");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b43310").on("click", function() {
+      change_flags("43310");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b43401").on("click", function() {
+      change_flags("43401");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b43499").on("click", function() {
+      change_flags("43499");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b43500").on("click", function() {
+      change_flags("43500");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b43700").on("click", function() {
+      change_flags("43700");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b43751").on("click", function() {
+      change_flags("43751");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b44100").on("click", function() {
+      change_flags("44100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b45000").on("click", function() {
+      change_flags("45000");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b45206").on("click", function() {
+      change_flags("45206");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b45299").on("click", function() {
+      change_flags("45299");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b45700").on("click", function() {
+      change_flags("45700");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b46100").on("click", function() {
+      change_flags("46100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b47000").on("click", function() {
+      change_flags("47000");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b47200").on("click", function() {
+      change_flags("47200");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b47213").on("click", function() {
+      change_flags("47213");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b47299").on("click", function() {
+      change_flags("47299");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b48100").on("click", function() {
+      change_flags("48100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b49300").on("click", function() {
+      change_flags("49300");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b49500").on("click", function() {
+      change_flags("49500");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b50000").on("click", function() {
+      change_flags("50000");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b50100").on("click", function() {
+      change_flags("50100");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b50300").on("click", function() {
+      change_flags("50300");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b50400").on("click", function() {
+      change_flags("50400");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b50500").on("click", function() {
+      change_flags("50500");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b50600").on("click", function() {
+      change_flags("50600");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b50800").on("click", function() {
+      change_flags("50800");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b50850").on("click", function() {
+      change_flags("50850");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#b50900").on("click", function() {
+      change_flags("50900");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });
+    d3.select("#alloff").on("click", function() {
+      change_flags("alloff");
+      d3.select("#chart").remove();
+      show_graph_all();
+    });

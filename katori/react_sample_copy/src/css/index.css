@@ -1,0 +1,47 @@
+html {
+  overflow: auto;
+}
+
+.string1 {
+  /* font-weight: bold; */
+  font-size: large  ;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin:0
+}
+
+.string2 {
+  /* font-weight: bold; */
+  font-size: large  ;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* margin:0 */
+}
+
+body {
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    overflow: auto;
+    margin: auto;
+    padding: auto;
+  }
+
+.dropdown {
+  background-color: "#efefef" ;
+  border-radius: 20px;
+  width: 800px;
+  padding: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  display:flex;
+}
+
+.dropdownselect {
+  background-color: #efefef;
+  /* border-radius: 20px; */
+  margin: 100;
+}
+

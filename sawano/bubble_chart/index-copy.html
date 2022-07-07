@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<button id="all">all</button>
+<script src="./d3.js"></script>
+<button id="blue">blue</button>
+<button id="orange">orange</button>
+<button id="green">green</button>
+<button id="red">red</button>
+<button id="purple">purple</button>
+
+<script>
+
+var width = 800,
+    height = 500,
+    padding = 1.5, // separation between same-color circles
+    clusterPadding = 6, // separation between different-color circles
+    maxRadius = 12;
+
+var n = 76, // total number of circles
+    m = 10; // number of distinct clusters
+
+var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+// The largest node for each cluster.
+var clusters = new Array(m);
+var price_list = [];
+var flag = [];
+
+d3.csv("../../preprocessing/NOV_TOTAL_CSV/nov_total5.csv").then(function(data){
+  
+  data.forEach(function(d){
+	  price_list.push({cluster: 0, radius: d["価格"]/1.0, name: d["品目名"], length: d["文字数"]});
+  });
+  for (var i = 0; i < n; i++) {
+    flag.push(false);
+  }
+  main_task(-1);
+});
+
+function main_task(color_flag) {
+
+  var index = 0;
+
+  var nodes = d3.range(n).map(function() {
+
+    var i = index % 5;
+    if (color_flag == -1) {
+      var r = 1 / (price_list[index].radius * price_list[index].radius) * 20;
+    }
+    else if (color_flag == i) {
+      var r = 1 / (price_list[index].radius * price_list[index].radius) * 40;
+    }
+    else {
+      var r = 0;
+    }
+  
+    //    r = 1 / price_list[index].radius * 20
+	  var n = price_list[index].name
+        l = price_list[index].length
+        d = {cluster: i, radius: r, name: n, length: l};
+    index += 1;
+    if (!clusters[i] || (r > clusters[i].radius)) clusters[i] = d;
+        return d;
+      
+    });
+
+  console.log(nodes);
+
+/*
+var force = d3v3.layout.force()
+    .nodes(nodes)
+    .size([width, height])
+    .gravity(.02)
+    .charge(0)
+    .on("tick", tick)
+    .start();
+*/
+
+  var force = d3.forceSimulation()
+    .force("charge", d3.forceManyBody().strength(0))
+    .force("collide", d3.forceCollide().radius(function(d) { return d.radius * 1.1; }))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("x", d3.forceX().strength(.01))
+    .force("y", d3.forceY().strength(.01))
+    .nodes(nodes)
+    .on("tick", tick)
+    
+  var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("id", "map");
+
+  var circle = svg
+    .selectAll("circle")
+    .data(nodes).enter().append("circle")
+	  .attr("class", "node_group")
+    .on("click", clicked)
+    .call(d3.drag()
+      .on("start", dragstarted) 
+      .on("drag", dragged) 
+      .on("end", dragended));
+	  //.on("click", clicked)
+    //.call(force.drag);
+
+  var text = svg
+    .selectAll("text")
+	  .data(nodes).enter().append("text")
+    .attr("class", "node_group")
+    .text(function(d){ return d.name;})
+ 
+  function clicked(event, d) {
+
+	  flag[d.index] = !flag[d.index];
+
+    d3.selectAll("circle")
+		  .filter(function(v, i) {
+        if (!flag[v.index]) {
+			      return true;
+        }
+		  })
+      .attr("opacity", 1)
+
+    d3.selectAll("circle")
+		  .filter(function(v, i) {
+        if (flag[v.index]) {
+			      return true;
+        }
+		  })
+      .attr("opacity", 0.3)
+  } 
+
+  function tick() {
+
+    circle
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .attr("r", function(d) { return d.radius; })
+      .each(cluster(30 * this.alpha() * 0.1 * this.alpha() * 0.5))
+      .style("fill", function(d) { return color(d.cluster); })
+      //.each(collide(.5))
+    text
+	    .attr("x", function(d) { return d.x - d.radius*d.length/6; })
+      .attr("y", function(d) { return d.y + d.radius/8; })
+      .attr("stroke", "none") 
+      .attr("fill", "white")
+	    .attr("font-size", function(d) { return d.radius/3; })
+      .attr("font-weight", "bolder")
+  }
+
+  function dragstarted(event, d) {
+
+    if (!event.active) force.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+  }
+
+  function dragged(event, d) {
+    d.fx = event.x;
+    d.fy = event.y;
+  }
+
+  function dragended(event, d) {
+    if (!event.active) force.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
+
+  document.getElementById("blue").onclick = function(){
+    d3.select("#map").remove();
+    main_task(0);
+  }
+
+  document.getElementById("green").onclick = function(){
+    d3.select("#map").remove();
+    main_task(2);
+  }
+
+  document.getElementById("orange").onclick = function(){
+    d3.select("#map").remove();
+    main_task(1);
+  }
+
+  document.getElementById("red").onclick = function(){
+    d3.select("#map").remove();
+    main_task(3);
+  }
+
+  document.getElementById("purple").onclick = function(){
+    d3.select("#map").remove();
+    main_task(4);
+  }
+
+  document.getElementById("all").onclick = function(){
+    d3.select("#map").remove();
+    main_task(-1);
+  }
+
+  // Move d to be adjacent to the cluster node.
+
+
+  function cluster(alpha) {
+    return function(d) {
+      var cluster = clusters[d.cluster];
+      if (cluster === d) return;
+      var x = d.x - cluster.x,
+        y = d.y - cluster.y,
+        l = Math.sqrt(x * x + y * y),
+        r = d.radius + cluster.radius;
+      if (l != r) {
+        l = (l - r) / l * alpha;
+        d.x -= x *= l;
+        d.y -= y *= l;
+        cluster.x += x;
+        cluster.y += y;
+      }
+    };
+  }
+
+// Resolves collisions between d and all other circles.
+
+/*
+function collide(alpha) {
+  var quadtree2 = d3v3.geom.quadtree(nodes);
+  var quadtree = d3.quadtree(nodes);
+
+
+  console.log(quadtree);
+  console.log(quadtree2);
+
+  return function(d) {
+    var r = d.radius + maxRadius + Math.max(padding, clusterPadding),
+        nx1 = d.x - r,
+        nx2 = d.x + r,
+        ny1 = d.y - r,
+        ny2 = d.y + r;
+    
+    quadtree.visit(function(quad, x1, y1, x2, y2) {
+
+      console.log("OK")
+
+      
+      if (quad.point && (quad.point !== d)) {
+        // console.log(quad.point)
+        var x = d.x - quad.point.x,
+            y = d.y - quad.point.y,
+            l = Math.sqrt(x * x + y * y),
+            r = d.radius + quad.point.radius + (d.cluster === quad.point.cluster ? padding : clusterPadding);
+        if (l < r) {
+          l = (l - r) / l * alpha;
+          d.x -= x *= l;
+          d.y -= y *= l;
+          quad.point.x += x;
+          quad.point.y += y;
+        }
+      }
+      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+    });
+  };
+}
+*/
+
+}
+
+</script>

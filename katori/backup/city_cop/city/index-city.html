@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>D3 Line Chart</title>
+  <script type="text/javascript" src="./d3.js"></script>
+  <style>
+    /* 軸のスタイル */
+    g.x_axis path, g.y_axis path {
+      stroke: black;
+      stroke-width: 1px;
+    }
+    /* 罫線スタイル */
+    g.x_axis line, g.y_axis line {
+      stroke: lightgray;
+      stroke-opacity: 0.7;
+      shape-rendering: crispEdges;
+    }
+  </style>
+  <style>
+    /* 点上にマウスを乗せる */
+    .tooltip {
+      position: absolute;
+      text-align: center;
+      width: auto;
+      height: auto;
+      padding: 2px;
+      font: 6px;
+      background: white;
+      -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+      -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+      visibility: hidden;
+    }
+  </style>
+  <style>
+    #chart {
+      position: absolute;
+      left: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <button id="sapporo">札　幌</button>
+    <button id="sendai">仙　台</button>
+    <button id="tokyo">東　京</button>
+    <button id="yokohama">横　浜</button>
+    <button id="kanazawa">金　沢</button>
+    <button id="nagoya">名古屋</button>
+    <button id="kyoto">京　都</button>
+    <button id="osaka">大　阪</button>
+    <button id="kobe">神　戸</button>
+    <button id="hiroshima">広　島</button>
+    <button id="takamatsu">高　松</button>
+    <button id="kitakyusyu">北九州</button>
+    <button id="fukuoka">福　岡</button>
+    <button id="okinawa">沖　縄</button>
+    <button id="allon">全表示</button>
+    <button id="alloff">全消去</button>
+  </div>
+
+  <div id="chart"></div>
+	<script src="line-city.js"></script>
+
+</body>
+</html>

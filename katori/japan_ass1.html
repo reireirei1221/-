@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>D3 Test</title>
+<script src="./d3.js" charset="utf-8"></script>
+<script src="./topojson.js" charset="utf-8"></script>
+<style>
+/* CSS設定 */
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 4px;
+    font: 13px;
+    background: white;
+    -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+    visibility: hidden;
+}
+</style>
+</head>
+<body>
+
+    <div>
+    <button id="pp">Population</button>
+    <button id="fop">FoodProduction</button>
+    <button id="cp">ClothingProduction</button>
+    <button id="fup">FurnitureProduction</button>
+    </div>
+
+    <script type="text/javascript">
+    var width = 800;
+    var height = 800;
+    var ppHash = {};
+    var fopHash = {};
+    var cpHash = {};
+    var fupHash = {};
+    var mode = "pp";
+    var Hashs = {};
+
+    var tooltip = d3.select("body").append("div").attr("class", "tooltip");
+
+    var color_pp = d3.scaleLinear().domain([500, 14000]).range([255,0]);
+    var color_fop = d3.scaleLinear().domain([100,2000]).range([255,0]);
+    var color_cp = d3.scaleLinear().domain([10,1300]).range([255,0]);
+    var color_fup = d3.scaleLinear().domain([5,500]).range([255,0]);
+    var colors = {"pp":color_pp, "fop":color_fop, "cp":color_cp, "fup":color_fup};
+
+    d3.csv("./Japan2015Data.csv").then(function(data){
+        data.forEach(function(d) 
+        {
+            ppHash[d.Prefecture] = d.Population;
+            fopHash[d.Prefecture] = d.FoodProduction;
+            cpHash[d.Prefecture] = d.ClothingProduction;
+            fupHash[d.Prefecture] = d.FurnitureProduction;
+            Hashs["pp"] = ppHash;
+            Hashs["fop"] = fopHash;
+            Hashs["cp"] = cpHash;
+            Hashs["fup"] = fupHash;
+        });
+        showMap(mode);
+    });
+
+    //Population Button
+    d3.select("#pp").on("click",function() {
+        mode = "pp";
+        d3.select("#map").remove();
+        showMap(mode);
+    });
+    //Food Production Button
+    d3.select("#fop").on("click",function() {
+        mode = "fop";
+        d3.select("#map").remove();
+        showMap(mode);
+    });
+    //Clothing Production Button
+    d3.select("#cp").on("click", function(){
+        mode = "cp";
+        d3.select("#map").remove();
+        showMap(mode);
+    });
+    //Furniture Production Button
+    d3.select("#fup").on("click", function() {
+        mode = "fup";
+        d3.select("#map").remove();
+        showMap(mode);
+    });
+
+    function showMap(mode){ 
+        var svg = d3.select("body").append("svg")
+        .attr("width",width)
+        .attr("height",height)
+        .attr("id", "map");
+
+        d3.json("./japan.topojson").then(function(data){
+            var japan = topojson.feature(data, data.objects.japan);
+
+            var projection = d3.geoMercator() 
+                                .center([137, 34])
+                                .translate([width/2, height/2]) 
+                                .scale(1500);
+
+            var path = d3.geoPath().projection(projection);
+
+            svg.selectAll("path")
+            .data(japan.features)
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .attr("fill", function(d){ return "rgb(255," +
+            Math.floor(colors[mode](Hashs[mode][d.properties.nam_ja])) + ", " + Math.floor(colors[mode](Hashs[mode][d.properties.nam_ja])) + ")"})
+            .attr("stroke", "#333333") 
+            .attr("stroke-width", 0.5)
+            .on("mouseover", function(d,i) {
+                tooltip
+                .style("visibility", "visible")
+                .html("prefecture : " + String(i.properties.nam_ja) + "<br>population : " + String(Hashs[mode][i.properties.nam_ja]));
+            })
+            .on("mousemove", function(d) {
+                tooltip
+                .style("top", (d3.event.pageY -20) + "px")
+                .style("left", (d3.event.pageX + 10) + "px");
+            })
+            .on("mouseout", function(d) {
+                tooltip.style("visibility", "hidden");
+            });
+        });
+    }
+</script>
+</body>
+</html>

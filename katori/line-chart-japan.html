@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>D3 Line Chart</title>
+  <script type="text/javascript" src="./d3.js"></script>
+  <!--<script src="https://d3js.org/d3.v7.min.js"></script>-->
+</head>
+
+<body>
+
+  <div>
+  <button id="tokyo">東京都</button>
+  <button id="osaka">大阪市</button>
+  <button id="nagoya">名古屋市</button>
+  </div>
+
+  <script>
+  // 1. データの準備
+  var dataset = {'apple':{'tokyo':[['2012-01-01',60],
+                                   ['2012-01-02',40],
+                                   ['2012-01-03',20]],
+                          'osaka':[['2012-01-01',10],
+                                   ['2012-01-02',20],
+                                   ['2012-01-03',30]],
+                         'nagoya':[['2012-01-01',100],
+                                   ['2012-01-02',30],
+                                   ['2012-01-03',50]]},
+                 'grape':{'tokyo':[['2012-01-01',100],
+                                   ['2012-01-02',50],
+                                   ['2012-01-03',50]],
+                          'osaka':[['2012-01-01',20],
+                                   ['2012-01-02',40],
+                                   ['2012-01-03',30]]}};
+
+  var width = 400; // グラフの幅
+  var height = 300; // グラフの高さ
+  var margin = { "top": 30, "bottom": 60, "right": 30, "left": 60 };
+
+  var display_flags = {"tokyo":false, "osaka":false, "nagoya":false};
+
+  // 2. SVG領域の設定
+  var svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
+
+  // 3. 軸スケールの設定
+  var food_name = "apple";
+  var city_name = "tokyo";
+
+  var selected_dataset = dataset[food_name][city_name];
+  console.log(dataset[food_name][city_name]);
+
+  var start_day = selected_dataset[0][0];
+  var end_day = selected_dataset[selected_dataset.length-1][0];
+  console.log(start_day,end_day);
+  console.log(Date(start_day));
+
+  var xScale = d3.scaleTime()
+    .domain([new Date(start_day), new Date(end_day)])
+    .range([margin.left, width - margin.right]);
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(selected_dataset, function(d) { return d[1]; })])
+    .range([height - margin.bottom, margin.top]);
+  
+  // 4. 軸の表示
+  var axis_x = d3.axisTop(xScale).tickFormat(d3.timeFormat("%m-%d"));
+  var axis_y = d3.axisLeft(yScale).ticks(10);
+
+  svg.append("g")
+    .attr("transform", "translate(" + 0 + "," + (height - margin.bottom) + ")")
+    .call(axis_x)
+    .append("text")
+    .attr("fill", "black")
+    .attr("x", (width - margin.left - margin.right) / 2 + margin.left)
+    .attr("y", 35)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "10pt")
+    .attr("font-weight", "bold")
+    .text("X Label");
+
+  svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + 0 + ")")
+    .call(axis_y)
+    .append("text")
+    .attr("fill", "black")
+    .attr("text-anchor", "middle")
+    .attr("x", -(height - margin.top - margin.bottom) / 2 - margin.top)
+    .attr("y", -35)
+    .attr("transform", "rotate(-90)")
+    .attr("font-weight", "bold")
+    .attr("font-size", "10pt")
+    .text("Y Label");
+
+  // 5. ラインの表示
+  //このままで複数表示はいけそう
+  var path = svg.append("path")
+  .datum(selected_dataset)
+  .attr("fill", "none")
+  .attr("stroke", "steelblue")
+  .attr("stroke-width", 1.5)
+  .attr("d", d3.line()
+      .x(function(d) { return xScale(new Date(d[0])); })
+      .y(function(d) { return yScale(d[1]); }));
+
+  var path_length = path.node().getTotalLength(); //パスの長さ
+
+  path.attr("stroke-dasharray", path_length + " " + path_length)
+    .attr("stroke-dashoffset", path_length)
+    .transition()
+    .duration(2000)
+    .attr("ease", "linear")
+    .attr("stroke-dashoffset", 0);
+  
+
+  </script>
+</body>
+
+</html>

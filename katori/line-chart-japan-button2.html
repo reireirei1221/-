@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>D3 Line Chart</title>
+  <script type="text/javascript" src="./d3.js"></script>
+  <!--<script src="https://d3js.org/d3.v7.min.js"></script>-->
+</head>
+
+<body>
+  <script>
+    var dataset = {'apple':{'tokyo':[['2012-01-01',60],
+                                    ['2012-01-02',40],
+                                    ['2012-01-03',20]],
+                            'osaka':[['2012-01-01',10],
+                                    ['2012-01-02',20],
+                                    ['2012-01-03',30]],
+                          'nagoya':[['2012-01-01',100],
+                                    ['2012-01-02',30],
+                                    ['2012-01-03',50]]},
+                  'grape':{'tokyo':[['2012-01-01',100],
+                                    ['2012-01-02',50],
+                                    ['2012-01-03',50]],
+                            'osaka':[['2012-01-01',20],
+                                    ['2012-01-02',40],
+                                    ['2012-01-03',30]]}};
+    var cities_name = ["tokyo", "osaka", "nagoya"];
+    console.log(dataset);
+  </script>
+
+  <div>
+  <button id="tokyo">東京都</button>
+  <button id="osaka">大阪市</button>
+  <button id="nagoya">名古屋市</button>
+  </div>
+
+  <script>
+    var display_flags = {"tokyo":true, "osaka":false, "nagoya":false}; //表示するグラフの制御
+
+    var width = 700; // グラフの幅
+    var height = 500; // グラフの高さ
+    var margin = { "top": 30, "bottom": 60, "right": 30, "left": 60 };
+    var xScale, yScale;
+    var svg;
+
+    var food_name = "apple";
+
+    show_graph_all(); //初めは東京のみ表示
+    
+    d3.select("#tokyo").on("click", function() {
+        change_flags("tokyo");
+        d3.select("#chart").remove();
+        console.log("tokyo_click");
+        console.log(display_flags);
+        show_graph_all();
+    });
+    d3.select("#osaka").on("click", function() {
+        change_flags("osaka");
+        d3.select("#chart").remove();
+        console.log("osaka_click");
+        console.log(display_flags);
+        show_graph_all();
+    });
+    d3.select("#nagoya").on("click", function() {
+        change_flags("nagoya");
+        d3.select("#chart").remove();
+        console.log("nagoya_click");
+        console.log(display_flags);
+        show_graph_all();
+    });
+    /*
+    for (var i = 0; i < cities_name.length; i++) {
+      console.log(i);
+      var button_id = "#" + cities_name[i];
+      //console.log(button_id);
+      d3.select(button_id).on("click", function() {
+        console.log(i);
+        console.log(cities_name);
+        change_flags(cities_name[i]);
+        d3.select("#chart").remove();
+        console.log(display_flags)
+        show_graph_all();
+      });
+    }
+    */
+    function make_svg() {
+      svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("id", "chart");
+    }
+
+    function change_flags(selected_button) {
+      //console.log(selected_button);
+      if (display_flags[selected_button] == true) {
+        display_flags[selected_button] = false;
+      }
+      else {
+        display_flags[selected_button] = true;
+      }
+    }
+
+    function set_scale() {
+      //開始・終了日付を見つける(より開始は古い日付にする)
+      var start_day = new Date('2025-12-31');
+      var end_day = new Date('2000-01-01');
+      for (var i = 0; i < cities_name.length; i++) {
+        if (display_flags[cities_name[i]]) {
+          //console.log("set_scale_debug");
+          //console.log(cities_name[i]);
+          var start_day_tmp = new Date(dataset[food_name][cities_name[i]][0][0]);
+          var end_day_tmp = new Date(dataset[food_name][cities_name[i]][dataset[food_name][cities_name[i]].length-1][0]);
+          if (start_day > start_day_tmp) {
+            start_day = start_day_tmp;
+          }
+          if (end_day < end_day_tmp) {
+            end_day = end_day_tmp;
+          }
+        }
+      }
+      xScale = d3.scaleTime()
+      .domain([start_day, end_day])
+      .range([margin.left, width - margin.right]);
+
+      //最小価格・最大価格を見つける
+      var min_cost = 100000;
+      var max_cost = -1;
+      var offset = 10;
+      for (var i = 0; i < cities_name.length; i++) {
+        if (display_flags[cities_name[i]]) {
+          //console.log("set_scale_debug");
+          //console.log(cities_name[i]);
+          for (var j = 0; j < dataset[food_name][cities_name[i]].length; j++) {
+            min_cost = Math.min(min_cost, dataset[food_name][cities_name[i]][j][1]);
+            max_cost = Math.max(max_cost, dataset[food_name][cities_name[i]][j][1]);
+          }
+        }
+      }
+      yScale = d3.scaleLinear()
+      .domain([Math.max(min_cost-offset, 0), max_cost+offset])
+      .range([height - margin.bottom, margin.top]);
+    }
+
+    function show_axis() {
+      var axis_x = d3.axisBottom(xScale)
+        .ticks(10)
+        .tickFormat(d3.timeFormat("%m-%d"))
+        .tickSize(-height + margin.bottom + margin.top);
+      var axis_y = d3.axisLeft(yScale)
+        .ticks(10)
+        .tickSize(-width + margin.left + margin.right);
+
+      svg.append("g")
+        .attr("transform", "translate(" + 0 + "," + (height - margin.bottom) + ")")
+        .call(axis_x)
+        .append("text")
+        .attr("fill", "black")
+        .attr("x", (width - margin.left - margin.right) / 2 + margin.left)
+        .attr("y", 35)
+        .attr("text-anchor", "middle")
+        .attr("font-size", "10pt")
+        .attr("font-weight", "bold")
+        .text("X Label");
+
+      svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + 0 + ")")
+        .call(axis_y)
+        .append("text")
+        .attr("fill", "black")
+        .attr("text-anchor", "middle")
+        .attr("x", -(height - margin.top - margin.bottom) / 2 - margin.top)
+        .attr("y", -35)
+        .attr("transform", "rotate(-90)")
+        .attr("font-weight", "bold")
+        .attr("font-size", "10pt")
+        .text("Y Label");
+    }
+
+    function show_graph() {
+      for (var i = 0; i < cities_name.length; i++) {
+        if (display_flags[cities_name[i]] == false) {
+          continue;
+        }
+        console.log("show_graph_debug");
+        console.log(cities_name[i]);
+        var path = svg.append("path")
+          .datum(dataset[food_name][cities_name[i]])
+          .attr("fill", "none")
+          .attr("stroke", "steelblue")
+          .attr("stroke-width", 1.5)
+          .attr("d", d3.line()
+              .x(function(d) { return xScale(new Date(d[0])); })
+              .y(function(d) { return yScale(d[1]); }));
+
+        var path_length = path.node().getTotalLength(); //パスの長さ
+
+        path.attr("stroke-dasharray", path_length + " " + path_length)
+          .attr("stroke-dashoffset", path_length)
+          .transition()
+          .duration(800)
+          .attr("ease", "linear")
+          .attr("stroke-dashoffset", 0);
+      }
+    }
+
+    function show_graph_all() {
+      make_svg();
+      console.log("make_svg");
+      console.log(display_flags);
+      set_scale();
+      console.log("set_scale");
+      console.log(display_flags);
+      show_axis();
+      console.log("show_axis");
+      console.log(display_flags);
+      show_graph();
+      console.log("show_graph");
+      console.log(display_flags);
+    }
+  </script>
+</body>
+</html>
